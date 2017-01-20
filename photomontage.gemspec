@@ -20,15 +20,11 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.7"
   spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "rspec"
-  spec.add_development_dependency "httparty"
-  spec.add_development_dependency "rmagick"
-  spec.add_development_dependency "mini_magick"
-  spec.add_development_dependency "ruby-progressbar"
-  spec.add_development_dependency "colorize"
-  spec.add_runtime_dependency "httparty"
-  spec.add_runtime_dependency "rmagick"
-  spec.add_runtime_dependency "mini_magick"
-  spec.add_runtime_dependency "ruby-progressbar"
-  spec.add_runtime_dependency "colorize"
+  spec.add_development_dependency "rspec", "~> 3.4"
+
+  spec.add_runtime_dependency "httparty", ['0.14.0']
+  spec.add_runtime_dependency "rmagick", ['2.16.0']
+  spec.add_runtime_dependency "mini_magick", ['4.6.0']
+  spec.add_runtime_dependency "ruby-progressbar", ['1.8.1']
+  spec.add_runtime_dependency "colorize", ['0.8.1']
 end
