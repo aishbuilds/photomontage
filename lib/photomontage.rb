@@ -31,7 +31,8 @@ module Photomontage
 		puts "\n\nGreat! Your photo collage is ready! What would you like to name it?".yellow
 		file_name = STDIN.gets.chomp
 		Flickr.create_collage(file_name)
-		puts "\n\nDone! Type".green + " 'open images/#{file_name}.jpg' ".magenta + "to view your image now!".green
+		puts "\n\nDone! Type".green + " 'open images/#{file_name}.jpg' ".magenta + "to view your image now! \n*If you using ruby interactive shell, exit from the shell.".green
+		FileUtils.rm_rf(Dir.glob('tmp/*'))
 	end
 
 	private

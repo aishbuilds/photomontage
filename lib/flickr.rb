@@ -42,7 +42,7 @@ class Flickr
 	end
 
 	def self.create_collage(file_name)
-		result  = MiniMagick::Image.new("bg.jpg")
+		result = read_bg_image
 		i,y=0,0
 		(0..1).each do |j|
 			x = -200
@@ -70,5 +70,12 @@ class Flickr
 
 	def call_progress_bar
 		5.times{PROGRESSBAR.increment; sleep 0.01}
+	end
+
+	def self.read_bg_image
+		File.open("tmp/bg.jpg", "wb") do |f| 
+			f.write HTTParty.get("https://s30.postimg.org/l9fwb3to1/image.jpg").parsed_response
+		end
+		img = MiniMagick::Image.new("tmp/bg.jpg")
 	end
 end
