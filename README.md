@@ -1,6 +1,6 @@
 # Photomontage
 
-TODO: Write a gem description
+Photomontage is a ruby gem that accepts search keywords provided by the user, fetches images that are relevant to the words, and collates them into a collage.
 
 ## Installation
 
@@ -18,9 +18,37 @@ Or install it yourself as:
 
     $ gem install photomontage
 
+## Installation dependencies
+
+1. Ensure you have ImageMagick (https://www.imagemagick.org/script/binary-releases.php) installed in your system.
+
+2. Troubleshooting installation of rmagick gem (https://github.com/rmagick/rmagick/blob/develop/README.textile)
+
 ## Usage
 
-TODO: Write usage instructions here
+Open Ruby interactive shell:
+
+    $ irb
+
+Require photomontage gem:
+
+```ruby
+> require 'photomontage'
+```
+
+Build your collage!
+	
+```ruby
+> Photomontage.begin
+```
+    
+To view the collage image, exit from irb:
+
+```ruby
+> exit
+```
+    
+    $ open images/file_name.jpg
 
 ## Contributing
 
