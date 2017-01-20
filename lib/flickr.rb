@@ -57,6 +57,7 @@ class Flickr
 			}
 		y += 300
 		end
+		Dir.mkdir 'images' unless File.exists?('images')
 		result.write "images/#{file_name}.jpg"
 	end
 

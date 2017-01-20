@@ -21,6 +21,7 @@ module Photomontage
 	end
 
 	def self.respond(keywords)
+		Dir.mkdir 'tmp' unless File.exists?('tmp')
 		FileUtils.rm_rf(Dir.glob('tmp/*'))
 		puts "\nHold on...While we make your collage...\n".green
 
