@@ -22,7 +22,7 @@ Or install it yourself as:
 
 1. Ensure you have ImageMagick (https://www.imagemagick.org/script/binary-releases.php) installed in your system.
 
-2. Troubleshooting installation of rmagick gem (https://github.com/rmagick/rmagick/blob/develop/README.textile)
+2. Troubleshooting installation of rmagick gem (https://github.com/rmagick/rmagick/#user-content-wrong)
 
 ## Usage
 
