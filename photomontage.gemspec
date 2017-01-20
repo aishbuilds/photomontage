@@ -26,4 +26,9 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "mini_magick"
   spec.add_development_dependency "ruby-progressbar"
   spec.add_development_dependency "colorize"
+  spec.add_runtime_dependency "httparty"
+  spec.add_runtime_dependency "rmagick"
+  spec.add_runtime_dependency "mini_magick"
+  spec.add_runtime_dependency "ruby-progressbar"
+  spec.add_runtime_dependency "colorize"
 end
