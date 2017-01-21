@@ -6,7 +6,7 @@ require "rmagick"
 require 'ruby-progressbar'
 require 'flickr'
 require 'colorize'
-require './config/interaction'
+require_relative '../config/interaction'
 
 module Photomontage
   def self.begin
