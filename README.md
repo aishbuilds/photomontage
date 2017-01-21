@@ -26,27 +26,11 @@ Or install it yourself as:
 
 ## Usage
 
-Open Ruby interactive shell:
+To build your collage, type:
 
-    $ irb
-
-Require photomontage gem:
-
-```ruby
-> require 'photomontage'
-```
-
-Build your collage!
-	
-```ruby
-> Photomontage.begin
-```
+    $ photomontage
     
-To view the collage image, exit from irb:
-
-```ruby
-> exit
-```
+To view the collage image:
     
     $ open images/file_name.jpg
 
