@@ -6,34 +6,34 @@ require "rmagick"
 require 'ruby-progressbar'
 require 'flickr'
 require 'colorize'
+require './config/interaction'
 
 module Photomontage
   def self.begin
-		puts "Hi there! Welcome to".green + " Photomontage!!".bold.green + "\nSimply provide 10 or less words, and get a collage of pictures representing your words, in seconds!\n".green
-		puts "Type".green + " 'exit' ".red + "anytime to stop providing words \n".green
+		puts Interaction::WELCOME
 		keywords = []
 		10.times{
 			word = STDIN.gets.chomp
 			break if word == 'exit'
-			keywords << word
+			keywords << word if !word.empty?
 		}
-		respond(keywords)
+		keywords
 	end
 
 	def self.respond(keywords)
 		Dir.mkdir 'tmp' unless File.exists?('tmp')
 		FileUtils.rm_rf(Dir.glob('tmp/*'))
-		puts "\nHold on...While we make your collage...\n".green
+		puts Interaction::IN_PROGRESS
 
 		keywords.each_with_index do |keyword, index|
 			scrape_flickr(keyword, index)
 		end
 		verify_images_present?
-		puts "\n\nGreat! Your photo collage is ready! What would you like to name it?".yellow
+		puts Interaction::FILE_NAME
 		file_name = STDIN.gets.chomp
 		Flickr.create_collage(file_name)
 		FileUtils.rm_rf(Dir.glob('tmp/*'))
-		puts "\n\nDone! Type".green + " 'open images/#{file_name}.jpg' ".magenta + "to view your image now! \n*If you using ruby interactive shell, exit from the shell.".green
+		puts Interaction::COMPLETE.gsub('FILE_NAME', file_name)
 	end
 
 	private

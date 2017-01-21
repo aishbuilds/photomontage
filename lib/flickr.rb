@@ -20,7 +20,7 @@ class Flickr
 				}
 			}
 		@index = index
-		@keyword = keyword
+		@url = nil
 	end
 
 	def search	
@@ -34,6 +34,7 @@ class Flickr
 	end
 
 	def fetch
+		return false unless @url
 		File.open("tmp/#{@index}.jpg", "wb") do |f| 
 			image = f.write HTTParty.get(@url).parsed_response
 		end
@@ -42,26 +43,40 @@ class Flickr
 	end
 
 	def self.create_collage(file_name)
-		result = read_bg_image
-		i,y=0,0
-		(0..1).each do |j|
-			x = -200
-			5.times{
-				img = MiniMagick::Image.new("tmp/#{i}.jpg")
-				result = result.composite(img) do |c|
-				c.compose "Over"
-				x += 200
-				i += 1
-				c.geometry "+#{x}+#{y}"
-				end
-			}
-		y += 300
-		end
+		bg_image = read_bg_image
+		result = loop_images(bg_image)
+		
+		write_image_to_file(result, file_name)
+	end
+
+	private
+
+	def self.write_image_to_file(result, file_name)
 		Dir.mkdir 'images' unless File.exists?('images')
 		result.write "images/#{file_name}.jpg"
 	end
 
-	private
+	def self.loop_images(result)
+		@i,@y=0,0
+		(0..1).each do |j|
+			@x = -200
+			5.times{
+				img = MiniMagick::Image.new("tmp/#{@i}.jpg")
+				result = make_composite_image(result, img)
+			}
+			@y += 300
+		end
+		result
+	end
+
+	def self.make_composite_image(result, img)
+		result = result.composite(img) do |c|
+			c.compose "Over"
+			@x += 200
+			@i += 1
+			c.geometry "+#{@x}+#{@y}"
+		end
+	end
 
 	def set_image_url(response)
 		photo = response["rsp"]["photos"]["photo"]
@@ -77,6 +92,6 @@ class Flickr
 		File.open("tmp/bg.jpg", "wb") do |f| 
 			f.write HTTParty.get("https://s30.postimg.org/l9fwb3to1/image.jpg").parsed_response
 		end
-		img = MiniMagick::Image.new("tmp/bg.jpg")
+		MiniMagick::Image.new("tmp/bg.jpg")
 	end
 end

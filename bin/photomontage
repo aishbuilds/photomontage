@@ -2,4 +2,5 @@
 
 require 'photomontage'
 
-Photomontage.begin
+keywords = Photomontage.begin
+Photomontage.respond(keywords)

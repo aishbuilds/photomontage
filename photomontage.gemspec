@@ -27,4 +27,5 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "mini_magick", ['4.6.0']
   spec.add_runtime_dependency "ruby-progressbar", ['1.8.1']
   spec.add_runtime_dependency "colorize", ['0.8.1']
+  spec.add_runtime_dependency "safe_yaml", ['1.0.4']
 end
